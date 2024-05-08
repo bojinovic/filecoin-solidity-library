@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/sh
 
 # No optimization
 ./bin/solc contracts/**/*.sol \
