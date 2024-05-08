@@ -2,12 +2,10 @@ name: "Main"
 on:
     push:
         branches:
-            - master
-            - milestone-1
+            - main
     pull_request:
         branches:
-            - master
-            - milestone-1
+            - main
 
 jobs:
     dep-install:
