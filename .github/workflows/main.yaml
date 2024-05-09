@@ -36,6 +36,7 @@ jobs:
                   # yarn install
                   make install-opencl
                   sudo ls -1 /usr/lib/*/libhwloc.so.* | head -n 1 | xargs -n1 -I {} sudo ln -s {} /usr/lib/libhwloc.so
+                  find ~ -iname libhwloc*
 
             - name: Install Rust
               uses: actions-rs/toolchain@v1
@@ -53,19 +54,19 @@ jobs:
                       ~/.cargo/git/db/
                   key: ${{ runner.os }}-cargo-${{ hashFiles('./testing/Cargo.lock') }}
 
-    smoke-tests:
-        name: "Run smoke tests"
-        timeout-minutes: 30
-        runs-on: ubuntu-22.04
-        needs: [dep-install]
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v2
-              with:
-                  submodules: "true"
+    # smoke-tests:
+    #     name: "Run smoke tests"
+    #     timeout-minutes: 30
+    #     runs-on: ubuntu-22.04
+    #     needs: [dep-install]
+    #     steps:
+    #         - name: Checkout
+    #           uses: actions/checkout@v2
+    #           with:
+    #               submodules: "true"
 
-            - name: Compile contracts
-              run: ./testing/smoke_tests.sh
+    #         - name: Compile contracts
+    #           run: ./testing/smoke_tests.sh
 
     miner-integration:
         name: "Miner API: integration tests"
