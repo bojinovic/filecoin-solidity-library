@@ -35,9 +35,9 @@ jobs:
                   make install_solc_linux
                   # yarn install
                   make install-opencl
-                  sudo ls -1 /usr/lib/*/libhwloc.so.* | head -n 1 | xargs -n1 -I {} sudo ln -s {} /usr/lib/libhwloc.so
+                  sudo echo /usr/lib/aarch64-linux-gnu/libhwloc.so.15 | xargs -I {} sudo ln -s {} /usr/lib/libhwloc.so
                   echo "--> Finding libhwloc"
-                  sudo find ~ -name "libhwloc*"
+                  sudo find / -name "libhwloc*"
 
             - name: Install Rust
               uses: actions-rs/toolchain@v1
