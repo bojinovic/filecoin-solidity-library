@@ -11,7 +11,7 @@ jobs:
     dep-install:
         name: "Run dependency install"
         timeout-minutes: 30
-        runs-on: ubuntu 
+        runs-on: ubuntu-24.04 
         steps:
             # - name: Install node
             #   uses: actions/setup-node@v2
@@ -55,7 +55,7 @@ jobs:
     # smoke-tests:
     #     name: "Run smoke tests"
     #     timeout-minutes: 30
-    #     runs-on: ubuntu 
+    #     runs-on: ubuntu-24.04 
     #     needs: [dep-install]
     #     steps:
     #         - name: Checkout
@@ -69,7 +69,7 @@ jobs:
     miner-integration:
         name: "Miner API: integration tests"
         timeout-minutes: 30
-        runs-on: ubuntu 
+        runs-on: ubuntu-24.04 
         needs: [dep-install]
         steps:
             - name: Checkout
