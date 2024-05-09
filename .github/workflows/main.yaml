@@ -37,6 +37,7 @@ jobs:
                   make install-opencl
                   sudo echo /usr/lib/aarch64-linux-gnu/libhwloc.so.15 | xargs -I {} sudo ln -s {} /usr/lib/libhwloc.so
                   sudo ln -s /usr/lib/aarch64-linux-gnu/libOpenCL.so /usr/lib/libOpenCL.so
+                  export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/lib/aarch64-linux-gnu/"
                   sudo ldconfig
 
             - name: Install Rust
