@@ -1,5 +1,8 @@
 name: "Main"
 on:
+    push:
+        branches:
+            - dummy-feat
     pull_request:
         branches:
             - master
