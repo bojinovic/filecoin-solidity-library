@@ -1,12 +1,12 @@
 # Filecoin Solidity
-
----
-
+       
+---    
+       
 [Protocol Labs](https://protocol.ai/) are now the owners of this library, and will mantain it moving forward.
 
 Originally authored by [Zondax](https://www.zondax.ch).
-
----
+ 
+---    
 
 ## Notice
 
@@ -131,3 +131,5 @@ Filecoin solidity documentation: [Let's go to docs web](https://docs.filecoin.io
 ---
 
 _**Information for `filecoin-solidity` lib developers is contained in [./lib-dev](./lib-dev)**_
+    
+ 
