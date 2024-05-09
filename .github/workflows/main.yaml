@@ -30,11 +30,9 @@ jobs:
               run: |
                   sudo apt-get update
                   sudo apt-get -y install hwloc jq pkg-config bzr ocl-icd-opencl-dev
-                  sudo apt install -y mesa-opencl-icd ocl-icd-opencl-dev ntpdate ubuntu-drivers-common gcc git bzr jq pkg-config curl clang build-essential hwloc libhwloc-dev wget
                   sudo apt install zsh -y
                   make install_solc_linux
                   # yarn install
-                  make install-opencl
                   sudo echo /usr/lib/aarch64-linux-gnu/libhwloc.so.15 | xargs -I {} sudo ln -s {} /usr/lib/libhwloc.so
                   sudo ln -s /usr/lib/aarch64-linux-gnu/libOpenCL.so /usr/lib/libOpenCL.so
                   export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/lib/aarch64-linux-gnu/"
