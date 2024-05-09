@@ -11,7 +11,7 @@ jobs:
     dep-install:
         name: "Run dependency install"
         timeout-minutes: 30
-        runs-on: ubuntu-22.04
+        runs-on: golang:1.21.7-bullseye
         steps:
             - name: Install node
               uses: actions/setup-node@v2
@@ -29,10 +29,12 @@ jobs:
             - name: Install other dependencies
               run: |
                   sudo apt-get update
+                  sudo apt-get -y install hwloc jq pkg-config bzr ocl-icd-opencl-dev
                   sudo apt install zsh -y
                   make install_solc_linux
-                  # yarn install
+                  yarn install
                   make install-opencl
+                  ls -1 /usr/lib/*/libhwloc.so.* | head -n 1 | xargs -n1 -I {} ln -s {} /usr/lib/libhwloc.so
 
             - name: Install Rust
               uses: actions-rs/toolchain@v1
@@ -53,7 +55,7 @@ jobs:
     smoke-tests:
         name: "Run smoke tests"
         timeout-minutes: 30
-        runs-on: ubuntu-22.04
+        runs-on: golang:1.21.7-bullseye
         needs: [dep-install]
         steps:
             - name: Checkout
@@ -67,7 +69,7 @@ jobs:
     miner-integration:
         name: "Miner API: integration tests"
         timeout-minutes: 30
-        runs-on: ubuntu-22.04
+        runs-on: golang:1.21.7-bullseye
         needs: [dep-install]
         steps:
             - name: Checkout
