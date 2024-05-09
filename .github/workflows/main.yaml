@@ -11,15 +11,15 @@ jobs:
     dep-install:
         name: "Run dependency install"
         timeout-minutes: 30
-        runs-on: ubuntu-22.04
+        runs-on: ubuntu 
         steps:
-            - name: Install node
-              uses: actions/setup-node@v2
-              with:
-                  node-version: "20.0.0"
+            # - name: Install node
+            #   uses: actions/setup-node@v2
+            #   with:
+            #       node-version: "20.0.0"
 
-            - name: Install yarn
-              run: npm install -g yarn
+            # - name: Install yarn
+            #   run: npm install -g yarn
 
             - name: Checkout repo
               uses: actions/checkout@main
@@ -35,8 +35,6 @@ jobs:
                   # yarn install
                   sudo echo /usr/lib/aarch64-linux-gnu/libhwloc.so.15 | xargs -I {} sudo ln -s {} /usr/lib/libhwloc.so
                   sudo ln -s /usr/lib/aarch64-linux-gnu/libOpenCL.so /usr/lib/libOpenCL.so
-                  export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/lib/aarch64-linux-gnu/"
-                  sudo ldconfig
 
             - name: Install Rust
               uses: actions-rs/toolchain@v1
@@ -57,7 +55,7 @@ jobs:
     # smoke-tests:
     #     name: "Run smoke tests"
     #     timeout-minutes: 30
-    #     runs-on: ubuntu-22.04
+    #     runs-on: ubuntu 
     #     needs: [dep-install]
     #     steps:
     #         - name: Checkout
@@ -71,7 +69,7 @@ jobs:
     miner-integration:
         name: "Miner API: integration tests"
         timeout-minutes: 30
-        runs-on: ubuntu-22.04
+        runs-on: ubuntu 
         needs: [dep-install]
         steps:
             - name: Checkout
@@ -83,4 +81,4 @@ jobs:
               run: |
                   cd testing
                   rustup target add wasm32-unknown-unknown
-                  cargo test miner_test
+                  cargo test account_test
