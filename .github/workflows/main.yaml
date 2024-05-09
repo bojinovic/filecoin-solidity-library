@@ -45,15 +45,15 @@ jobs:
                   toolchain: nightly
                   override: true
 
-            - name: Restore crates
-              uses: actions/cache@v3
-              with:
-                  path: |
-                      ~/.cargo/bin/
-                      ~/.cargo/registry/index/
-                      ~/.cargo/registry/cache/
-                      ~/.cargo/git/db/
-                  key: ${{ runner.os }}-cargo-${{ hashFiles('./testing/Cargo.lock') }}
+            # - name: Restore crates
+            #   uses: actions/cache@v3
+            #   with:
+            #       path: |
+            #           ~/.cargo/bin/
+            #           ~/.cargo/registry/index/
+            #           ~/.cargo/registry/cache/
+            #           ~/.cargo/git/db/
+            #       key: ${{ runner.os }}-cargo-${{ hashFiles('./testing/Cargo.lock') }}
 
     # smoke-tests:
     #     name: "Run smoke tests"
