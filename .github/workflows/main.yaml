@@ -45,17 +45,17 @@ jobs:
                   toolchain: nightly
                   override: true
 
+            - name: Build - Solc
+              run: make build
+
             - name: Compilation
               run: |
                 cd testing
                 rustup target add wasm32-unknown-unknown
                 cargo build
-                cd ..
-                make test_account_integration
 
-            - name: Test Account
-              run: |
-                  cargo test account
+            - name: Test-Account
+              run: cd cd testing && cargo test account
             # - name: Restore crates
             #   uses: actions/cache@v3
             #   with:
