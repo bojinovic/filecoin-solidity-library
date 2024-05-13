@@ -154,7 +154,7 @@ test_hh_calibnet:
 ################ TESTS SECURITY ################
 
 security_account_api:
-	myth analyze contracts/v0.8/AccountAPI.sol --execution-timeout 300 --solv 0.8.18
+	myth analyze contracts/v0.8/AccountAPI.sol --execution-timeout 300 --solv 0.8.18 --solc-json mythril.solc.json
 	myth analyze contracts/v0.8/tests/account.test.sol --execution-timeout 300 --solv 0.8.18
 
 security_market_api:
