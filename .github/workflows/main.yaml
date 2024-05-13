@@ -15,13 +15,13 @@ jobs:
         container:
           image: golang:1.21.7-bullseye
         steps:
-            # - name: Install node
-            #   uses: actions/setup-node@v2
-            #   with:
-            #       node-version: "20.0.0"
+            - name: Install node
+              uses: actions/setup-node@v2
+              with:
+                  node-version: "20.0.0"
 
-            # - name: Install yarn
-            #   run: npm install -g yarn
+            - name: Install yarn
+              run: npm install -g yarn
 
             - name: Checkout repo
               uses: actions/checkout@main
@@ -36,7 +36,7 @@ jobs:
                   apt-get -y install hwloc jq pkg-config bzr ocl-icd-opencl-dev
                   apt install zsh -y
                   make install_solc_linux
-                  # yarn install
+                  yarn install
                   ls -1 /usr/lib/*/libhwloc.so.* | head -n 1 | xargs -n1 -I {} ln -s {} /usr/lib/libhwloc.so
 
             - name: Install Rust
