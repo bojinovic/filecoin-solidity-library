@@ -45,12 +45,16 @@ jobs:
                   toolchain: nightly
                   override: true
 
-            - name: Run miner test
+            - name: Compilation
               run: |
                 cd testing
                 rustup target add wasm32-unknown-unknown
                 cargo build
+                cargo test account
 
+            - name: Test Account
+              run: |
+                  cargo test account
             # - name: Restore crates
             #   uses: actions/cache@v3
             #   with:
