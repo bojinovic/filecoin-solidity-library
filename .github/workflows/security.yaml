@@ -9,13 +9,10 @@ on:
 
 
 jobs:
-    security-tests:
-        name: "API Security tests"
+    dep-install:
+        name: "Dep. install"
         timeout-minutes: 30
         runs-on: ubuntu-latest
-        # container:
-        #   image: golang:1.21.7-bullseye
-
         steps:
 
             - name: Install node
@@ -40,7 +37,13 @@ jobs:
 
             - name: Install mythril
               run: pip3 install mythril 
-
+    
+    security-tests-part-1:
+        name: "API Security tests"
+        timeout-minutes: 30
+        runs-on: ubuntu-latest
+        needs: [dep-install]
+        steps:
             - name: Run checks on Account API
               run:  make security_account_api
 
@@ -53,6 +56,35 @@ jobs:
             - name: Run checks on VerifReg API
               run:  make security_verifreg_api
 
+    security-tests-part-2:
+        name: "API Security tests"
+        timeout-minutes: 30
+        runs-on: ubuntu-latest
+        steps:
+
+            - name: Install node
+              uses: actions/setup-node@v2
+              with:
+                    node-version: "20.0.0"
+
+            - name: Install yarn
+              run: npm install -g yarn
+
+            - name: Checkout repo
+              uses: actions/checkout@main
+              with:
+                    submodules: "true"
+
+            - name: Install other dependencies
+              run: |
+                    sudo apt-get update
+                    sudo apt-get -y install hwloc jq pkg-config bzr ocl-icd-opencl-dev
+                    sudo apt install zsh -y
+                    yarn install
+
+            - name: Install mythril
+              run: pip3 install mythril 
+
             - name: Run checks on Power API
               run:  make security_power_api
 
@@ -64,100 +96,4 @@ jobs:
 
             - name: Run checks on Precompiles API
               run:  make security_precompiles_api
-#   power:
-#     name: "Power API: security checks"
-#     timeout-minutes: 20
-#     runs-on: ubuntu-22.04
-#     steps:
-#       - name: Checkout
-#         uses: actions/checkout@v2
-#         with:
-#           submodules: 'false'
-#       - name: Install mythril
-#         run: pip3 install mythril
-#       - name: Run checks
-#         run:  make security_power_api
-
-#   verifreg:
-#     name: "VerifReg API: security checks"
-#     timeout-minutes: 20
-#     runs-on: ubuntu-22.04
-#     steps:
-#       - name: Checkout
-#         uses: actions/checkout@v2
-#         with:
-#           submodules: 'false'
-#       - name: Install mythril
-#         run: pip3 install mythril
-#       - name: Run checks
-#         run:  make security_verifreg_api
-
-#   market:
-#     name: "Market API: security checks"
-#     timeout-minutes: 20
-#     runs-on: ubuntu-22.04
-#     steps:
-#       - name: Checkout
-#         uses: actions/checkout@v2
-#         with:
-#           submodules: 'false'
-#       - name: Install mythril
-#         run: pip3 install mythril
-#       - name: Run checks
-#         run:  make security_market_api
-
-#   miner:
-#     name: "Miner API: security checks"
-#     timeout-minutes: 20
-#     runs-on: ubuntu-22.04
-#     steps:
-#       - name: Checkout
-#         uses: actions/checkout@v2
-#         with:
-#           submodules: 'false'
-#       - name: Install mythril
-#         run: pip3 install mythril
-#       - name: Run checks
-#         run:  make security_miner_api
-
-#   datacap:
-#     name: "DataCap API: security checks"
-#     timeout-minutes: 20
-#     runs-on: ubuntu-22.04
-#     steps:
-#       - name: Checkout
-#         uses: actions/checkout@v2
-#         with:
-#           submodules: 'false'
-#       - name: Install mythril
-#         run: pip3 install mythril
-#       - name: Run checks
-#         run:  make security_datacap_api
-
-#   send:
-#     name: "Send API: security checks"
-#     timeout-minutes: 20
-#     runs-on: ubuntu-22.04
-#     steps:
-#       - name: Checkout
-#         uses: actions/checkout@v2
-#         with:
-#           submodules: 'false'
-#       - name: Install mythril
-#         run: pip3 install mythril
-#       - name: Run checks
-#         run:  make security_send_api
-
-#   precompiles:
-#     name: "Precompiles API: security checks"
-#     timeout-minutes: 20
-#     runs-on: ubuntu-22.04
-#     steps:
-#       - name: Checkout
-#         uses: actions/checkout@v2
-#         with:
-#           submodules: 'false'
-#       - name: Install mythril
-#         run: pip3 install mythril
-#       - name: Run checks
-#         run:  make security_precompiles_api
+#  
