@@ -55,7 +55,13 @@ jobs:
                 cargo build
 
             - name: Test-Account
-              run: cd cd testing && cargo test account
+              run: cd testing && cargo test account -- --nocapture
+
+            - name: Test-Address
+              run: cd testing && cargo test address -- --nocapture
+
+            - name: Test-Send
+              run: cd testing && cargo test send_test -- --nocapture
             # - name: Restore crates
             #   uses: actions/cache@v3
             #   with:
