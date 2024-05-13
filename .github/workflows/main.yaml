@@ -62,16 +62,18 @@ jobs:
 
             - name: Test-Send
               run: cd testing && cargo test send_test -- --nocapture
-            # - name: Restore crates
-            #   uses: actions/cache@v3
-            #   with:
-            #       path: |
-            #           ~/.cargo/bin/
-            #           ~/.cargo/registry/index/
-            #           ~/.cargo/registry/cache/
-            #           ~/.cargo/git/db/
-            #       key: ${{ runner.os }}-cargo-${{ hashFiles('./testing/Cargo.lock') }}
+            
 
+    standalone-test:
+        name: "Run dependency install"
+        timeout-minutes: 30
+        runs-on: ubuntu-latest
+        container:
+          image: golang:1.21.7-bullseye
+        needs: [dep-install]
+        steps:
+            - name: Test-Send
+              run: cd testing && cargo test send_test -- --nocapture
     # smoke-tests:
     #     name: "Run smoke tests"
     #     timeout-minutes: 30
