@@ -102,4 +102,5 @@ jobs:
             - name: Run miner test
               run: |
                   cd testing
+                  rustup target add wasm32-unknown-unknown
                   cargo build
