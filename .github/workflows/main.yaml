@@ -45,6 +45,12 @@ jobs:
                   toolchain: nightly
                   override: true
 
+            - name: Run miner test
+              run: |
+                cd testing
+                rustup target add wasm32-unknown-unknown
+                cargo build
+
             # - name: Restore crates
             #   uses: actions/cache@v3
             #   with:
@@ -86,21 +92,21 @@ jobs:
     #               rustup target add wasm32-unknown-unknown
     #               cargo test miner_test
 
-    compilation:
-        name: "Build API: integration tests"
-        timeout-minutes: 30
-        runs-on: ubuntu-latest
-        container:
-          image: golang:1.21.7-bullseye
-        needs: [dep-install]
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v2
-              with:
-                  submodules: "true"
+    # compilation:
+    #     name: "Build API: integration tests"
+    #     timeout-minutes: 30
+    #     runs-on: ubuntu-latest
+    #     container:
+    #       image: golang:1.21.7-bullseye
+    #     needs: [dep-install]
+    #     steps:
+    #         - name: Checkout
+    #           uses: actions/checkout@v2
+    #           with:
+    #               submodules: "true"
 
-            - name: Run miner test
-              run: |
-                  cd testing
-                  rustup target add wasm32-unknown-unknown
-                  cargo build
+    #         - name: Build
+    #           run: |
+    #               cd testing
+    #               rustup target add wasm32-unknown-unknown
+    #               cargo build
