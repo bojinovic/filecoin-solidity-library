@@ -155,35 +155,35 @@ test_hh_calibnet:
 
 security_account_api:
 	myth analyze contracts/v0.8/AccountAPI.sol --execution-timeout 300 --solv 0.8.18 --solc-json mythril.solc.json
-	myth analyze contracts/v0.8/tests/account.test.sol --execution-timeout 300 --solv 0.8.18
+	myth analyze contracts/v0.8/tests/account.test.sol --execution-timeout 300 --solv 0.8.18 --solc-json mythril.solc.json 
 
 security_market_api:
-	myth analyze contracts/v0.8/MarketAPI.sol --execution-timeout 300
-	myth analyze contracts/v0.8/tests/market.test.sol --execution-timeout 300
+	myth analyze contracts/v0.8/MarketAPI.sol --execution-timeout 300 --solv 0.8.18 --solc-json mythril.solc.json
+	myth analyze contracts/v0.8/tests/market.test.sol --execution-timeout 300 --solv 0.8.18 --solc-json mythril.solc.json
 
 security_miner_api:
-	myth analyze contracts/v0.8/MinerAPI.sol --execution-timeout 300
-	myth analyze contracts/v0.8/tests/miner.test.sol --execution-timeout 300
+	myth analyze contracts/v0.8/MinerAPI.sol --execution-timeout 300 --solv 0.8.18 --solc-json mythril.solc.json
+	myth analyze contracts/v0.8/tests/miner.test.sol --execution-timeout 300 --solv 0.8.18 --solc-json mythril.solc.json
 
 security_verifreg_api:
-	myth analyze contracts/v0.8/VerifRegAPI.sol --execution-timeout 300
-	myth analyze contracts/v0.8/tests/verifreg.test.sol --execution-timeout 300
+	myth analyze contracts/v0.8/VerifRegAPI.sol --execution-timeout 300 --solv 0.8.18 --solc-json mythril.solc.json
+	myth analyze contracts/v0.8/tests/verifreg.test.sol --execution-timeout 300 --solv 0.8.18 --solc-json mythril.solc.json
 
 security_power_api:
-	myth analyze contracts/v0.8/PowerAPI.sol --execution-timeout 300
-	myth analyze contracts/v0.8/tests/power.test.sol --execution-timeout 300
+	myth analyze contracts/v0.8/PowerAPI.sol --execution-timeout 300 --solv 0.8.18 --solc-json mythril.solc.json
+	myth analyze contracts/v0.8/tests/power.test.sol --execution-timeout 300 --solv 0.8.18 --solc-json mythril.solc.json
 
 security_datacap_api:
-	myth analyze contracts/v0.8/DataCapAPI.sol --execution-timeout 300
-	myth analyze contracts/v0.8/tests/datacap.test.sol --execution-timeout 300
+	myth analyze contracts/v0.8/DataCapAPI.sol --execution-timeout 300 --solv 0.8.18 --solc-json mythril.solc.json
+	myth analyze contracts/v0.8/tests/datacap.test.sol --execution-timeout 300 --solv 0.8.18 --solc-json mythril.solc.json
 
 security_send_api:
-	myth analyze contracts/v0.8/SendAPI.sol --execution-timeout 300
-	myth analyze contracts/v0.8/tests/send.test.sol --execution-timeout 300
+	myth analyze contracts/v0.8/SendAPI.sol --execution-timeout 300 --solv 0.8.18 --solc-json mythril.solc.json
+	myth analyze contracts/v0.8/tests/send.test.sol --execution-timeout 300 --solv 0.8.18 --solc-json mythril.solc.json
 
 security_precompiles_api:
-	myth analyze contracts/v0.8/PrecompilesAPI.sol --execution-timeout 300
-	myth analyze contracts/v0.8/tests/precompiles.test.sol --execution-timeout 300
+	myth analyze contracts/v0.8/PrecompilesAPI.sol --execution-timeout 300 --solv 0.8.18 --solc-json mythril.solc.json
+	myth analyze contracts/v0.8/tests/precompiles.test.sol --execution-timeout 300 --solv 0.8.18 --solc-json mythril.solc.json
 
 ################ DEPS ################
 
