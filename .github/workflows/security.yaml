@@ -44,6 +44,26 @@ jobs:
             - name: Run checks on Account API
               run:  make security_account_api
 
+            - name: Run checks on Market API
+              run:  make security_market_api
+
+            - name: Run checks on Miner API
+              run:  make security_miner_api
+
+            - name: Run checks on VerifReg API
+              run:  make security_verifreg_api
+
+            - name: Run checks on Power API
+              run:  make security_power_api
+
+            - name: Run checks on Datacap API
+              run:  make security_datacap_api
+
+            - name: Run checks on Send API
+              run:  make security_send_api
+
+            - name: Run checks on Precompiles API
+              run:  make security_precompiles_api
 #   power:
 #     name: "Power API: security checks"
 #     timeout-minutes: 20

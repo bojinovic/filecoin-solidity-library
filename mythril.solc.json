@@ -1,7 +1,7 @@
 {
     "remappings": [ 
         "solidity-cborutils/contracts/=node_modules/solidity-cborutils/contracts/", 
-        "@ensdomains/buffer/contracts/=node_modules/@ensdomains/buffer/contracts"
+        "@ensdomains/buffer/contracts/=node_modules/@ensdomains/buffer/contracts/"
     ]
 
 }
