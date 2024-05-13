@@ -62,7 +62,8 @@
         "rlp": "^3.0.0",
         "ts-node": "^10.9.1",
         "typechain": "^8.3.1",
-        "typescript": "^5.2.2"
+        "typescript": "^5.2.2",
+        "@ensdomains/buffer": "^0.1.1"
     },
     "dependencies": {
         "@noble/secp256k1": "^2.1.0",
