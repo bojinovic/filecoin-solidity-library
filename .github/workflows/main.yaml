@@ -74,6 +74,7 @@ jobs:
         steps:
             - name: Test-Send
               run: cd testing && cargo test send_test -- --nocapture
+              
     # smoke-tests:
     #     name: "Run smoke tests"
     #     timeout-minutes: 30
