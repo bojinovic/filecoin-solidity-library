@@ -50,7 +50,7 @@ jobs:
                 cd testing
                 rustup target add wasm32-unknown-unknown
                 cargo build
-                make test_account
+                make test_account_integration
 
             - name: Test Account
               run: |
