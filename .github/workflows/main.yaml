@@ -8,8 +8,8 @@ on:
             - master
 
 jobs:
-    dep-install:
-        name: "Run dependency install"
+    api-tests:
+        name: "API tests"
         timeout-minutes: 30
         runs-on: ubuntu-latest
         container:
@@ -45,7 +45,7 @@ jobs:
                   toolchain: nightly
                   override: true
 
-            - name: Build - Solc
+            - name: Build Contracts
               run: make build
 
             - name: Compilation
@@ -62,70 +62,36 @@ jobs:
 
             - name: Test-Send
               run: cd testing && cargo test send_test -- --nocapture
-            
 
-    standalone-test:
-        name: "Standalone test"
-        timeout-minutes: 30
-        runs-on: ubuntu-latest
-        container:
-          image: golang:1.21.7-bullseye
-        needs: [dep-install]
-        steps:
-            - name: Checkout repo
-              uses: actions/checkout@main
-              with:
-                  submodules: "true"
+            - name: Test-BigInts
+              run: cd testing && cargo test bigints_test -- --nocapture
 
-            - name: Test-Send
-              run: cd testing && cargo test send_test -- --nocapture
+            - name: Test-Leb128
+              run: cd testing && cargo test leb128 -- --nocapture
 
-    # smoke-tests:
-    #     name: "Run smoke tests"
-    #     timeout-minutes: 30
-    #     runs-on: ubuntu-24.04 
-    #     needs: [dep-install]
-    #     steps:
-    #         - name: Checkout
-    #           uses: actions/checkout@v2
-    #           with:
-    #               submodules: "true"
+            - name: Test-Deserialize
+              run: cd testing && cargo test deserialize_params_tests -- --nocapture
 
-    #         - name: Compile contracts
-    #           run: ./testing/smoke_tests.sh
+            - name: Test-MarketCbor
+              run: cd testing && cargo test market_cbor_tests -- --nocapture
 
-    # miner-integration:
-    #     name: "Miner API: integration tests"
-    #     timeout-minutes: 30
-    #     runs-on: ubuntu-latest
-    #     needs: [dep-install]
-    #     steps:
-    #         - name: Checkout
-    #           uses: actions/checkout@v2
-    #           with:
-    #               submodules: "true"
+            - name: Test-CborDecode
+              run: cd testing && cargo test cbor_decode_test -- --nocapture
 
-    #         - name: Run miner test
-    #           run: |
-    #               cd testing
-    #               rustup target add wasm32-unknown-unknown
-    #               cargo test miner_test
+            - name: Test-FRC0042
+              run: cd testing  && cargo run --example methodnum
 
-    # compilation:
-    #     name: "Build API: integration tests"
-    #     timeout-minutes: 30
-    #     runs-on: ubuntu-latest
-    #     container:
-    #       image: golang:1.21.7-bullseye
-    #     needs: [dep-install]
-    #     steps:
-    #         - name: Checkout
-    #           uses: actions/checkout@v2
-    #           with:
-    #               submodules: "true"
+            - name: Test-VerifReg
+              run: cd testing && cargo test verifreg_test -- --nocapture
 
-    #         - name: Build
-    #           run: |
-    #               cd testing
-    #               rustup target add wasm32-unknown-unknown
-    #               cargo build
+            - name: Test-Power
+              run: cd testing && cargo test power_test -- --nocapture
+
+            - name: Test-Miner
+              run: cd testing && cargo test miner_test -- --nocapture
+
+            - name: Test-Market
+              run: cd testing && cargo test market_test -- --nocapture
+
+            - name: Test-SolcVersions
+              run: chmod +x ./testing/smoke_tests.sh && ./testing/smoke_tests.sh
