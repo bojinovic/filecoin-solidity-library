@@ -30,13 +30,13 @@ jobs:
 
             - name: Install other dependencies
               run: |
-                  sudo apt-get update
-                  sudo apt-get -y install hwloc jq pkg-config bzr ocl-icd-opencl-dev
-                  sudo apt install zsh -y
+                  apt-get update
+                  apt-get -y install hwloc jq pkg-config bzr ocl-icd-opencl-dev
+                  apt install zsh -y
                   make install_solc_linux
                   # yarn install
-                  sudo echo /usr/lib/aarch64-linux-gnu/libhwloc.so.15 | xargs -I {} sudo ln -s {} /usr/lib/libhwloc.so
-                  sudo ln -s /usr/lib/aarch64-linux-gnu/libOpenCL.so /usr/lib/libOpenCL.so
+                  echo /usr/lib/aarch64-linux-gnu/libhwloc.so.15 | xargs -I {} ln -s {} /usr/lib/libhwloc.so
+                  ln -s /usr/lib/aarch64-linux-gnu/libOpenCL.so /usr/lib/libOpenCL.so
 
             - name: Install Rust
               uses: actions-rs/toolchain@v1
