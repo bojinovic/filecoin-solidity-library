@@ -18,6 +18,7 @@ jobs:
         with:
           node-version: "20.0.0"
           registry-url: "https://registry.npmjs.org"
+          scope: "@fil-acc"
       - name: Install dependencies
         run:  |
           yarn install
