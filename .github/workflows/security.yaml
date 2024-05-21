@@ -10,7 +10,7 @@ on:
 
 jobs:
     security-tests-part-1:
-        name: "API Security tests"
+        name: "API Security tests - part 1"
         timeout-minutes: 30
         runs-on: ubuntu-latest
         steps:
@@ -38,7 +38,6 @@ jobs:
             - name: Install mythril
               run: pip3 install mythril 
     
-
             - name: Run checks on Account API
               run:  make security_account_api
 
@@ -52,7 +51,7 @@ jobs:
               run:  make security_verifreg_api
 
     security-tests-part-2:
-        name: "API Security tests"
+        name: "API Security tests - part 2"
         timeout-minutes: 30
         runs-on: ubuntu-latest
         steps:
