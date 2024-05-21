@@ -37,6 +37,7 @@ jobs:
           submodules: "true"
       - name: Install from NPM registry
         run: |
+          rm -rf hardhat.config.ts package.json
           cd .github/test-api-use
           yarn add filecoin-solidity-api
           yarn install 
