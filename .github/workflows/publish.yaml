@@ -33,6 +33,10 @@ jobs:
         run: |
           echo Publishing as ${{ steps.get_version.outputs.version }}
           npm --allow-same-version --no-git-tag-version version ${{ steps.get_version.outputs.version }}
+      - name: DBG log
+        run: echo $NODE_AUTH_TOKEN
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Publish package
         run: npm publish
         env:
